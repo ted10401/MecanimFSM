@@ -2,7 +2,7 @@
 
 public abstract class BaseStateMachineBehaviour : StateMachineBehaviour
 {
-    private Animator m_animator;
+    protected Animator m_animator;
     private AnimatorStateInfo m_stateInfo;
     private int m_layerIndex;
     private bool m_active;
@@ -15,7 +15,7 @@ public abstract class BaseStateMachineBehaviour : StateMachineBehaviour
         m_layerIndex = layerIndex;
         m_active = true;
 
-        OnStateEnter();
+        OnStateEntered();
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,7 +25,7 @@ public abstract class BaseStateMachineBehaviour : StateMachineBehaviour
         m_layerIndex = layerIndex;
         m_active = false;
 
-        OnStateExit();
+        OnStateExited();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -50,18 +50,18 @@ public abstract class BaseStateMachineBehaviour : StateMachineBehaviour
                 break;
         }
 
-        OnStateUpdate();
+        OnStateUpdated();
     }
 
     private void OnDisable()
     {
         if(m_active)
         {
-            OnStateExit();
+            OnStateExited();
         }
     }
 
-    protected virtual void OnStateEnter() { }
-    protected virtual void OnStateExit() { }
-    protected virtual void OnStateUpdate() { }
+    protected virtual void OnStateEntered() { }
+    protected virtual void OnStateExited() { }
+    protected virtual void OnStateUpdated() { }
 }
