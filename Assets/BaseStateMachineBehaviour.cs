@@ -6,7 +6,7 @@ public abstract class BaseStateMachineBehaviour : StateMachineBehaviour
     private AnimatorStateInfo m_stateInfo;
     private int m_layerIndex;
     private bool m_active;
-    private float m_deltaTime
+    private float m_deltaTime;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
