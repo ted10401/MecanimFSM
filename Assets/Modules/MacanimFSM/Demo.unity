@@ -775,5 +775,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 2110834477}
   waypointComponent: {fileID: 2110834479}
-  patrolRange: 5
-  traceRange: 10
+  fsmAnimator: {fileID: 1709627513}

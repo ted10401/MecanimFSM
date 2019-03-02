@@ -6,18 +6,28 @@ namespace MacanimFSM
     [RequireComponent(typeof(NavMeshAgent), typeof(WaypointComponent))]
     public class Brain : MonoBehaviour
     {
-        public readonly int PATROL_STATE_HASH = Animator.StringToHash("PatrolState");
-        public readonly int TRACE_STATE_HASH = Animator.StringToHash("TraceState");
+        private readonly int PLAYER_DISTANCE_HASH = Animator.StringToHash("TargetDistance");
 
         public NavMeshAgent navMeshAgent;
         public WaypointComponent waypointComponent;
-        public float patrolRange = 5f;
-        public float traceRange = 10f;
+        public Animator fsmAnimator;
+
+        private Transform m_transform;
 
         private void Reset()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             waypointComponent = GetComponent<WaypointComponent>();
+        }
+
+        private void Awake()
+        {
+            m_transform = transform;
+        }
+
+        private void Update()
+        {
+            fsmAnimator.SetFloat(PLAYER_DISTANCE_HASH, Vector3.Distance(m_transform.position, PlayerTransform.Player.position));
         }
     }
 }
